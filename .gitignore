@@ -38,3 +38,15 @@ build/*
 temp
 temp/
 temp/*
+
+
+
+*.temp
+*.temp/
+*.temp/*
+
+
+.vscode
+.vscode/
+.vscode/*
+

@@ -19,9 +19,9 @@ endif()
 # -------------------------------------------------------------------------
 IF(CMAKE_COMPILER_IS_GNUCXX)
     message(STATUS "GCC detected, adding compile flags")
-    set(CMAKE_CXX_FLAGS "")
+    set(CMAKE_CXX_FLAGS "-pthread")
 ELSE ()
-    set(CMAKE_CXX_FLAGS "")
+    set(CMAKE_CXX_FLAGS "-pthread")
 ENDIF ()
 # -------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ enable_testing()
 # ADD CPP files
 # ---------------------------------------------------------------------
 include_directories("include/")
-file(GLOB SOURCES src/*.?pp)
+file(GLOB SOURCES src/*.c*)
 # ---------------------------------------------------------------------
 
 
@@ -57,3 +57,5 @@ target_include_directories(${PROJECT_NAME}
         ${PROJECT_SOURCE_DIR}/src
 )
 
+find_package(OpenSSL REQUIRED)
+target_link_libraries(${PROJECT_NAME} OpenSSL::SSL)
