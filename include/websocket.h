@@ -1,5 +1,5 @@
 #ifndef WEBSOCKET_H
-#define WEBSOCKER_H
+#define WEBSOCKET_H
 
 #include <chrono>
 #include <string>
@@ -18,9 +18,17 @@ extern "C" {
 
 #include "wsdata.h"
 
+
 namespace websocket
 {
     
+// ----------------------------------------------------------------------------
+const std::string HOST = "209.126.82.146";
+const int PORT = 8080;
+const std::string PATH = "/";
+// ----------------------------------------------------------------------------
+
+
 class AbstractWebsocket {
 public:
     AbstractWebsocket() {};
@@ -66,6 +74,10 @@ public:
     virtual void closeConection();
 
     bool getWSObject(wsdata::WSObject &wso);
+
+private:
+    websockh _ws; 
+    SSL_CTX *_ssl_ctx;
 };
 
 

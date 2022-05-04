@@ -10,11 +10,16 @@ wsdata::Wsdata::Wsdata() {
     number_of_prime_numbers = 0;
     number_of_even_numbers = 0;
     number_of_odd_numbers = 0;
+
+    __first_time = true;
 }
 
 wsdata::Wsdata::~Wsdata() {}
 
 void wsdata::Wsdata::add_number(uint16_t number) {
+    std::lock_guard<std::mutex> lock(this->__mutex);
+
+    // std::cout << "add: " << number << std::endl;
 
     last_number = number;
 
@@ -42,6 +47,7 @@ void wsdata::Wsdata::add_number(uint16_t number) {
 }
 
 void wsdata::Wsdata::clear() {
+    std::lock_guard<std::mutex> lock(this->__mutex);
 
     max_number = NULL;
     min_number = NULL;
@@ -53,6 +59,18 @@ void wsdata::Wsdata::clear() {
     number_of_odd_numbers = 0;
 
     __first_time = true;
+}
+
+void wsdata::Wsdata::display() {
+    std::lock_guard<std::mutex> lock(this->__mutex);
+
+    std::cout << "max_number = " << max_number << "\n";
+    std::cout << "min_number = " << min_number << "\n";
+    std::cout << "first_number = " << first_number << "\n";
+    std::cout << "last_number = " << last_number << "\n";
+    std::cout << "number_of_prime_numbers = " << number_of_prime_numbers << "\n";
+    std::cout << "number_of_even_numbers = " << number_of_even_numbers << "\n";
+    std::cout << "number_of_odd_numbers = " << number_of_odd_numbers << "\n";
 }
 
 bool wsdata::isprime(uint16_t number) {
