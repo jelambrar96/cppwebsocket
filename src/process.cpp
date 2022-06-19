@@ -137,10 +137,10 @@ void process::ProcessingProcessor::mainloop() {
 
         wsdata::WSObject temp_object = this->_wsobject_deque->pop();
         int index = temp_object.a;
-        int value = temp_object.b;
+        uint32_t value = temp_object.b;
 
         // std::cout << "POP.a: " << index << " POP.b: " << value << "\n"; 
-
+        index--;
 
         wsdata::Wsdata * block_data = this->_wsdata_deque->get(index);
         block_data->add_number(value);
