@@ -11,7 +11,7 @@ namespace wsdata {
 class WSObject{
 public:
     int a;
-    int b;
+    uint32_t b;
 
     // WSObject(WSObject &wso) { a = wso.a; b = wso.b;}
 };
