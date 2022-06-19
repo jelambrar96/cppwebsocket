@@ -2,8 +2,21 @@
 #define WEBSOCKET_H
 
 #include <chrono>
+#include <iostream>
+#include <sstream>
 #include <string>
 #include <thread>
+
+
+#include <jsoncpp/json/json.h>
+#include <jsoncpp/json/value.h>
+#include <jsoncpp/json/reader.h>
+
+
+#include <curlpp/cURLpp.hpp>
+#include <curlpp/Easy.hpp>
+#include <curlpp/Options.hpp>
+
 
 #ifdef __cplusplus 
 extern "C" {
@@ -17,6 +30,9 @@ extern "C" {
 #endif
 
 #include "wsdata.h"
+
+
+using namespace curlpp::options;
 
 
 namespace websocket
@@ -53,6 +69,20 @@ class BoostWebsocket : public AbstractWebsocket {
 public:
     BoostWebsocket();
     virtual ~BoostWebsocket();
+
+    virtual void init();
+    virtual void config(std::string filename);
+    virtual bool createConection();
+    virtual void closeConection();
+
+    bool getWSObject(wsdata::WSObject &wso);
+};
+
+
+class CurlWebsocket : public AbstractWebsocket {
+public:
+    CurlWebsocket();
+    virtual ~CurlWebsocket();
 
     virtual void init();
     virtual void config(std::string filename);

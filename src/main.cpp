@@ -15,7 +15,7 @@ int main (int argc, char *argv[])  {
     DequeThreadSafe<wsdata::WSObject> _deque_in; 
 
     // se crea el objeto que  es capturar los datos de websocket
-    websocket::AbstractWebsocket * _websocket = new websocket::RandomWebsocket();
+    websocket::AbstractWebsocket * _websocket = new websocket::CurlWebsocket();
     _websocket->init();
 
     // se crea el objeto que almancena los 100 bloques de informacion 
